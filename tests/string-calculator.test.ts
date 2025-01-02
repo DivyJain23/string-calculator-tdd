@@ -40,4 +40,16 @@ describe("addNumbers function", () => {
     expect(addNumbers("10,20,30,40,50")).toBe(150);
     expect(addNumbers("10,20, 30 ,40, 50 ")).toBe(150);
   });
+
+  it("should handle new lines between numbers", () => {
+    expect(addNumbers("1\n2,3")).toBe(6);
+    expect(addNumbers("1\n2\n3")).toBe(6);
+    expect(addNumbers("1, 2\n3")).toBe(6);
+  });
+
+  it("should throw an error for new lines separated characters", () => {
+    expect(() => addNumbers("1\na")).toThrow("Invalid input: not a number");
+    expect(() => addNumbers("x\ny")).toThrow("Invalid input: not a number");
+    expect(() => addNumbers("1\n b\n cc\n 6")).toThrow("Invalid input: not a number");
+  });
 });

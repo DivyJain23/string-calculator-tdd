@@ -1,13 +1,8 @@
 export function addNumbers(input: string): number {
   if (input.trim() === "") return 0;
 
-  // Split the input by commas
-  const numbers = input.split(",");
-
-  // Handle the case where there are no valid numbers (empty strings from splitting)
-  if (numbers.length === 1 && numbers[0] === "") {
-    return 0;
-  }
+  // Split the input by commas or new lines
+  const numbers = input.split(/[\n,]/);
 
   let sum = 0;
 
