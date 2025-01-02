@@ -12,5 +12,9 @@ describe("addNumbers function", () => {
   it("should handle spaces around the number", () => {
     expect(addNumbers(" 1 ")).toBe(1);
   });
+
+  it("should throw an error for invalid input", () => {
+    expect(() => addNumbers("abc")).toThrow("Invalid input: not a number");
+  });
   
 });
