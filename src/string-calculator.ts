@@ -8,6 +8,11 @@ export function addNumbers(input: string): number {
   const num1 = numbers[0] ? parseInt(numbers[0].trim()) : 0;
   const num2 = numbers[1] ? parseInt(numbers[1].trim()) : 0;
 
+  // Validate numbers
+  if (isNaN(num1) || isNaN(num2)) {
+    throw new Error("Invalid input: not a number");
+  }
+
   // Sum the numbers and return
   return num1 + num2;
 }

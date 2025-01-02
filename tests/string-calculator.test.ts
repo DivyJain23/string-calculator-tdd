@@ -27,4 +27,10 @@ describe("addNumbers function", () => {
     expect(addNumbers(" 1 , 2 ")).toBe(3);
     expect(addNumbers(" 1,")).toBe(1);
   });
+
+  it("should throw an error for comma-separated characters", () => {
+    expect(() => addNumbers("1,a")).toThrow("Invalid input: not a number");
+    expect(() => addNumbers("x,y")).toThrow("Invalid input: not a number");
+    expect(() => addNumbers("1, b")).toThrow("Invalid input: not a number");
+  });
 });
