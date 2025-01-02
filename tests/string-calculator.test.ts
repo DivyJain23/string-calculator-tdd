@@ -44,7 +44,12 @@ describe("addNumbers function", () => {
   it("should handle new lines between numbers", () => {
     expect(addNumbers("1\n2,3")).toBe(6);
     expect(addNumbers("1\n2\n3")).toBe(6);
-    expect(addNumbers("1, 2\n3")).toBe(6);
+  });
+
+  it("should handle leading/trailing spaces with new lines", () => {
+    expect(addNumbers("  1 \n 2 \n 3 ")).toBe(6);
+    expect(addNumbers("  1\n  2 \n  3")).toBe(6);
+    expect(addNumbers("\n  1 ,2  \n")).toBe(3);
   });
 
   it("should throw an error for new lines separated characters", () => {
