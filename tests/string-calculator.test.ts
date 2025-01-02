@@ -67,4 +67,8 @@ describe("addNumbers function", () => {
     expect(addNumbers("1\n2,3")).toBe(6);
   });
 
+  it("should handle multiple new lines between numbers", () => {
+    expect(addNumbers("1\n\n2\n\n3")).toBe(6);
+    expect(addNumbers("\n1\n2\n\n3\n")).toBe(6);
+  });
 });
