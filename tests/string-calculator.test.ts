@@ -8,4 +8,9 @@ describe("addNumbers function", () => {
   it("should return the number itself for a single number", () => {
     expect(addNumbers("1")).toBe(1);
   });
+
+  it("should handle spaces around the number", () => {
+    expect(addNumbers(" 1 ")).toBe(1);
+  });
+  
 });
