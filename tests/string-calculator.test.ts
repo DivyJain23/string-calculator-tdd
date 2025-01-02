@@ -57,4 +57,10 @@ describe("addNumbers function", () => {
     expect(() => addNumbers("x\ny")).toThrow("Invalid input: not a number");
     expect(() => addNumbers("1\n b\n cc\n 6")).toThrow("Invalid input: not a number");
   });
+
+  it("should return 0 for only new lines", () => {
+    expect(addNumbers("\n\n")).toBe(0);
+  });
+  
+
 });
