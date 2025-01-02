@@ -31,6 +31,13 @@ describe("addNumbers function", () => {
   it("should throw an error for comma-separated characters", () => {
     expect(() => addNumbers("1,a")).toThrow("Invalid input: not a number");
     expect(() => addNumbers("x,y")).toThrow("Invalid input: not a number");
-    expect(() => addNumbers("1, b")).toThrow("Invalid input: not a number");
+    expect(() => addNumbers("1, b, cc, 6")).toThrow("Invalid input: not a number");
+  });
+
+  it("should handle an unknown amount of numbers", () => {
+    expect(addNumbers("1,2,3")).toBe(6);
+    expect(addNumbers("4,5,6,7")).toBe(22);
+    expect(addNumbers("10,20,30,40,50")).toBe(150);
+    expect(addNumbers("10,20, 30 ,40, 50 ")).toBe(150);
   });
 });

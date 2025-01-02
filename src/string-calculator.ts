@@ -4,15 +4,23 @@ export function addNumbers(input: string): number {
   // Split the input by commas
   const numbers = input.split(",");
 
-  // Handle up to two numbers using index
-  const num1 = numbers[0] ? parseInt(numbers[0].trim()) : 0;
-  const num2 = numbers[1] ? parseInt(numbers[1].trim()) : 0;
-
-  // Validate numbers
-  if (isNaN(num1) || isNaN(num2)) {
-    throw new Error("Invalid input: not a number");
+  // Handle the case where there are no valid numbers (empty strings from splitting)
+  if (numbers.length === 1 && numbers[0] === "") {
+    return 0;
   }
 
-  // Sum the numbers and return
-  return num1 + num2;
+  let sum = 0;
+
+  for (const num of numbers) {
+    const trimmedNum = num.trim();
+    if (trimmedNum === "") continue; // Skip empty entries
+
+    const parsedNum = parseInt(trimmedNum);
+    if (isNaN(parsedNum)) {
+      throw new Error("Invalid input: not a number");
+    }
+    sum += parsedNum;
+  }
+
+  return sum;
 }
