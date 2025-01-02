@@ -61,6 +61,10 @@ describe("addNumbers function", () => {
   it("should return 0 for only new lines", () => {
     expect(addNumbers("\n\n")).toBe(0);
   });
-  
+
+  it("should handle both commas and new lines as delimiters", () => {
+    expect(addNumbers("1,2\n3")).toBe(6);
+    expect(addNumbers("1\n2,3")).toBe(6);
+  });
 
 });
