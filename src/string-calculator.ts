@@ -19,7 +19,7 @@ export function addNumbers(input: string): number {
   const numbers = input.split(delimiter);
 
   let sum = 0;
-  let negativeNumber;
+  let negatives: string[] = [];
 
   for (const num of numbers) {
     const trimmedNum = num.trim();
@@ -32,11 +32,15 @@ export function addNumbers(input: string): number {
 
     // Check for negative numbers
     if (parsedNum < 0) {
-      negativeNumber = parsedNum;
-      throw new Error(`Negatives not allowed: ${negativeNumber}`);
+      negatives.push(trimmedNum);
     }
 
     sum += parsedNum;
+  }
+
+  // If there are negative numbers, throw an error with all the negatives
+  if (negatives.length > 0) {
+    throw new Error(`Negatives not allowed:${negatives.join(',')}`);
   }
 
   return sum;
