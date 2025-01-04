@@ -96,4 +96,8 @@ describe("addNumbers function", () => {
     expect(() => addNumbers("//;\nx;2;4")).toThrow("Invalid input: not a number");
   });
 
+  it("should throw 'Negatives not allowed' for negative numbers in the string", () => {
+    expect(() => addNumbers("1,-2,3")).toThrow("Negatives not allowed: -2");
+  });
+
 });

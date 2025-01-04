@@ -8,17 +8,18 @@ export function addNumbers(input: string): number {
   // Check if custom delimiter is specified in the format "//[delimiter]\n"
   if (input.trim().startsWith('//')) {
     // Extract custom delimiter, assuming it is a single character at position 2
-    delimiter = new RegExp(input[2])
+    delimiter = new RegExp(input[2]);
     // Remove the custom delimiter declaration from the input string
     input = input.substring(4).trim();
   }
 
   if (input === "") return 0;
 
-  // Split the input by commas or new lines
+  // Split the input by the delimiter
   const numbers = input.split(delimiter);
 
   let sum = 0;
+  let negativeNumber;
 
   for (const num of numbers) {
     const trimmedNum = num.trim();
@@ -28,6 +29,13 @@ export function addNumbers(input: string): number {
     if (isNaN(parsedNum)) {
       throw new Error("Invalid input: not a number");
     }
+
+    // Check for negative numbers
+    if (parsedNum < 0) {
+      negativeNumber = parsedNum;
+      throw new Error(`Negatives not allowed: ${negativeNumber}`);
+    }
+
     sum += parsedNum;
   }
 
