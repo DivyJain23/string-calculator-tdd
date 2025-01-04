@@ -35,6 +35,11 @@ export function addNumbers(input: string): number {
       negatives.push(trimmedNum);
     }
 
+    // Ignore numbers greater than 1000
+    if (parsedNum > 1000) {
+      continue;
+    }
+
     sum += parsedNum;
   }
 

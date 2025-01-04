@@ -105,4 +105,13 @@ describe("addNumbers function", () => {
     expect(() => addNumbers("-1,-2,-3")).toThrow("Negatives not allowed:-1,-2,-3");
   });
 
+  it("should ignore numbers greater than 1000", () => {
+    expect(addNumbers("2,1001")).toBe(2);          
+    expect(addNumbers("1000,1001,2")).toBe(1002);   
+    expect(addNumbers("1000,1001,500,1001")).toBe(1500);
+    expect(addNumbers("1000,2000,500")).toBe(1500);  
+    expect(addNumbers("1001")).toBe(0);              
+    expect(addNumbers("1000")).toBe(1000);           
+  });
+
 });
