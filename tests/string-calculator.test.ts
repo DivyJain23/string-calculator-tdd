@@ -105,6 +105,11 @@ describe("addNumbers function", () => {
     expect(() => addNumbers("-1,-2,-3")).toThrow("Negatives not allowed:-1,-2,-3");
   });
 
+  it("should throw 'Negatives not allowed' for multiple negative numbers with custom delimiter", () => {
+    expect(() => addNumbers("//;\n1;-2;-3")).toThrow("Negatives not allowed:-2,-3");
+    expect(() => addNumbers("//;\n-1;-2;-3")).toThrow("Negatives not allowed:-1,-2,-3");
+  });
+
   it("should ignore numbers greater than 1000", () => {
     expect(addNumbers("2,1001")).toBe(2);          
     expect(addNumbers("1000,1001,2")).toBe(1002);   
@@ -114,4 +119,14 @@ describe("addNumbers function", () => {
     expect(addNumbers("1000")).toBe(1000);           
   });
 
+  it("should handle multi-character delimiters", () => {
+    expect(addNumbers("//[***]\n1***2***3")).toBe(6);
+    expect(addNumbers("//[sep]\n1sep2sep3")).toBe(6);
+    expect(addNumbers("//[@@@]\n5@@@10@@@15")).toBe(30);
+  });
+
+  it("should throw 'Negatives not allowed' for multiple negative numbers with multi-character delimiters", () => {
+    expect(() => addNumbers("//[***]\n1***2***-3")).toThrow("Negatives not allowed:-3");
+  });
+  
 });

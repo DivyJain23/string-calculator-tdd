@@ -3,14 +3,17 @@ export function addNumbers(input: string): number {
   if (input.trim() === "") return 0;
 
   // Default delimiters are comma and newline
-  let delimiter = /,|\n/; 
+  let delimiter = /,|\n/;
 
   // Check if custom delimiter is specified in the format "//[delimiter]\n"
   if (input.trim().startsWith('//')) {
-    // Extract custom delimiter, assuming it is a single character at position 2
-    delimiter = new RegExp(input[2]);
-    // Remove the custom delimiter declaration from the input string
-    input = input.substring(4).trim();
+    // Extract custom delimiter, considering multi-character delimiters
+    const delimiterMatch = /^\/\/(.+)\n/.exec(input);
+    if (delimiterMatch) {
+      delimiter = new RegExp(delimiterMatch[1]);
+      // Remove the custom delimiter declaration from the input string
+      input = input.substring(delimiterMatch[0].length).trim();
+    }
   }
 
   if (input === "") return 0;
