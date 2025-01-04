@@ -2,9 +2,9 @@
   "name": "string-calculator-tdd",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "string-calculator.ts",
   "scripts": {
-    "test": "jest"
+    "test": "jest --verbose"
   },
   "keywords": [],
   "author": "",

@@ -71,4 +71,29 @@ describe("addNumbers function", () => {
     expect(addNumbers("1\n\n2\n\n3")).toBe(6);
     expect(addNumbers("\n1\n2\n\n3\n")).toBe(6);
   });
+
+  it("should return 0 for an empty string with custom delimiter", () => {
+    expect(addNumbers("//;\n")).toBe(0);
+  });
+
+  it("should handle spaces around numbers with custom delimiter", () => {
+    expect(addNumbers("//;\n 1 ")).toBe(1);
+  });
+
+  it("should return 0 if the string only contains a custom delimiter and not numbers", () => {
+    expect(addNumbers("//;\n ;")).toBe(0);
+  });  
+
+  it("should handle custom delimiters", () => {
+    expect(addNumbers("//;\n1")).toBe(1);
+    expect(addNumbers("//;\n1;2")).toBe(3);
+    expect(addNumbers("//;\n1;2;4")).toBe(7);
+  });
+
+  it("should throw an error for invalid characters with custom delimiter", () => {
+    expect(() => addNumbers("//;\nx;y")).toThrow("Invalid input: not a number");
+    expect(() => addNumbers("//;\nx;y;z")).toThrow("Invalid input: not a number");
+    expect(() => addNumbers("//;\nx;2;4")).toThrow("Invalid input: not a number");
+  });
+
 });
